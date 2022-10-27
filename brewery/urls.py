@@ -21,4 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/references/', views.ReferenceList.as_view()),
     path('api/references/<int:pk>/', views.ReferenceDetail.as_view()),
+    path('api/bars/', views.BarList.as_view()),
+    path('api/bars/<int:pk>/', views.BarDetail.as_view()),
+    path('api/stocks/', views.StockList.as_view()),
+    path('api/orders/', views.OrderList.as_view()),
+    path('api/orders/<int:pk>/', views.OrderDetail.as_view()),
 ]

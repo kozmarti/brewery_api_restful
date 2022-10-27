@@ -5,10 +5,21 @@ class Reference(models.Model):
 	reference = models.CharField(max_length=30)
 	name = models.CharField(max_length=30)
 	description = models.CharField(max_length=200, blank=True)
+	
+	@property
+	def availability(self):
+		total_stock = sum(Stock.objects.filter(reference=self).values_list('stock', flat=True))
+		if total_stock:
+			return "available"
+		return "outofstock"
 
 	class Meta:
 		ordering = ['reference']
 
+    
+	
+	
+	
 
 class Bar(models.Model):
 	name = models.CharField(max_length=30)
