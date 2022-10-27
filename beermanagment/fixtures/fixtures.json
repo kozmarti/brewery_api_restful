@@ -1,0 +1,97 @@
+[
+    {
+        "model": "beermanagment.reference",
+        "pk": 1,
+        "fields": {
+            "reference": "leffeblonde",
+            "name": "Leffe blonde",
+            "description": "Une bière blonde d'abbaye brassée depuis 1240 et que l'on ne présente plus !"
+        }
+    },
+    {
+        "model": "beermanagment.reference",
+        "pk": 2,
+        "fields": {
+            "reference": "brewdogipa",
+            "name": "Brewdog Punk IPA",
+            "description": "La Punk IPA est une bière écossaise s'inspirant des tendances américaines en matière de brassage et du choix des houblons."
+        }
+    },
+    {
+        "model": "beermanagment.reference",
+        "pk": 3,
+        "fields": {
+            "reference": "fullerindiapale",
+            "name": "Fuller's India Pale Ale",
+            "description": "Brassée pour l'export, la Fuller's India Pale Ale est la vitrine du savoir faire bien « british » de cette brasserie historique. "
+        }
+    },
+    {
+        "model": "beermanagment.bar",
+        "pk": 1,
+        "fields": {
+            "name": "1er étage"
+        }
+    },
+    {
+        "model": "beermanagment.bar",
+        "pk": 2,
+        "fields": {
+            "name": "2eme étage"
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 1,
+        "fields": {
+            "reference": 1,
+            "bar": 1,
+            "stock": 5
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 2,
+        "fields": {
+            "reference": 2,
+            "bar": 1,
+            "stock": 5
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 3,
+        "fields": {
+            "reference": 3,
+            "bar": 1,
+            "stock": 3
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 4,
+        "fields": {
+            "reference": 1,
+            "bar": 2,
+            "stock": 7
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 5,
+        "fields": {
+            "reference": 2,
+            "bar": 2,
+            "stock": 1
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 6,
+        "fields": {
+            "reference": 3,
+            "bar": 2,
+            "stock": 12
+        }
+    }
+]

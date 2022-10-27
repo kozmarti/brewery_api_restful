@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from beermanagment import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/references/', views.ReferenceList.as_view()),
+    path('api/references/<int:pk>/', views.ReferenceDetail.as_view()),
 ]

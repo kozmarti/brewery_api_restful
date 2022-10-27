@@ -1,4 +1,3 @@
-from hashlib import blake2b
 from django.db import models
 
 
@@ -23,6 +22,7 @@ class Stock(models.Model):
 
 class Order(models.Model):
 	bar = models.ForeignKey("Bar", on_delete=models.CASCADE)
+
 
 class OrderItem(models.Model):
 	order = models.ForeignKey("Order", on_delete=models.CASCADE)
