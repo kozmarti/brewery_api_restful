@@ -17,13 +17,33 @@ from django.contrib import admin
 from django.urls import path
 from beermanagment import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/references/', views.ReferenceList.as_view()),
-    path('api/references/<int:pk>/', views.ReferenceDetail.as_view()),
-    path('api/bars/', views.BarList.as_view()),
-    path('api/bars/<int:pk>/', views.BarDetail.as_view()),
-    path('api/stocks/', views.StockList.as_view()),
+    path('api/references/', views.ReferenceViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})),
+    path('api/references/<int:pk>/', views.ReferenceViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})),
+    path('api/bars/', views.BarViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})),
+    path('api/bars/<int:pk>/', views.BarViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})),
+    path('api/stocks/', views.StockViewSet.as_view({
+    'get': 'list',
+})),
     path('api/orders/', views.OrderList.as_view()),
     path('api/orders/<int:pk>/', views.OrderDetail.as_view()),
+    path('api/statistics/', views.statistics),
 ]

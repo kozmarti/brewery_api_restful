@@ -27,6 +27,60 @@
         }
     },
     {
+        "model": "beermanagment.reference",
+        "pk": 4,
+        "fields": {
+            "reference": "drycider",
+            "name": "Dry Cider",
+            "description": "Incontournable des pubs et terrasses anglo-saxons, le Hard Ciderl débarque enfin en France sous le nom de La Mordue "
+        }
+    },
+    {
+        "model": "beermanagment.reference",
+        "pk": 5,
+        "fields": {
+            "reference": "americanpaleale",
+            "name": "American Pale Ale",
+            "description": " En définitive, une pale ale est avant tout une Ale : une bière d'inspiration anglaise, à fermentation haute. Brassée au malt pâle "
+        }
+    },
+    {
+        "model": "beermanagment.reference",
+        "pk": 6,
+        "fields": {
+            "reference": "doubleipa",
+            "name": "Double IPA",
+            "description": "Les bières de type IPA (India Pale Ale) sont dans l'air du temps mais cette appellation est parfois floue. "
+        }
+    },
+    {
+        "model": "beermanagment.reference",
+        "pk": 7,
+        "fields": {
+            "reference": "irishstoutbeer",
+            "name": "Irish Stout Beer",
+            "description": "L'India Pale Ale (ou IPA) est le style qui caractérise le mieux la bière artisanale. "
+        }
+    },
+    {
+        "model": "beermanagment.reference",
+        "pk": 8,
+        "fields": {
+            "reference": "goldenale",
+            "name": "Golden Ale",
+            "description": "Brassée pour l'export, la Fuller's India Pale Ale est la vitrine du savoir faire bien « british » de cette brasserie historique. "
+        }
+    },
+    {
+        "model": "beermanagment.reference",
+        "pk": 9,
+        "fields": {
+            "reference": "craftbrownale",
+            "name": "Craft Brown Ale",
+            "description": "Brassée pour l'export, la Fuller's India Pale Ale est la vitrine du savoir faire bien « british » de cette brasserie historique. "
+        }
+    },
+    {
         "model": "beermanagment.bar",
         "pk": 1,
         "fields": {
@@ -38,6 +92,20 @@
         "pk": 2,
         "fields": {
             "name": "2eme étage"
+        }
+    },
+    {
+        "model": "beermanagment.bar",
+        "pk": 3,
+        "fields": {
+            "name": "rooftop"
+        }
+    },
+    {
+        "model": "beermanagment.bar",
+        "pk": 4,
+        "fields": {
+            "name": "cave"
         }
     },
     {

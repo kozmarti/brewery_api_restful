@@ -8,18 +8,11 @@ class Reference(models.Model):
 	
 	@property
 	def availability(self):
-		total_stock = sum(Stock.objects.filter(reference=self).values_list('stock', flat=True))
-		if total_stock:
-			return "available"
-		return "outofstock"
+		return "available" if sum(Stock.objects.filter(reference=self).values_list('stock', flat=True)) else "outofstock"
 
 	class Meta:
 		ordering = ['reference']
 
-    
-	
-	
-	
 
 class Bar(models.Model):
 	name = models.CharField(max_length=30)

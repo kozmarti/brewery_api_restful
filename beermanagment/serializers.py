@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from beermanagment.models import Reference, Bar, Stock, Order
+from beermanagment.models import Reference, Bar, Stock, Order, OrderItem
+
 
 
 class ReferenceSerializer(serializers.ModelSerializer):
@@ -17,9 +18,19 @@ class BarSerializer(serializers.ModelSerializer):
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
-        fields = ['id', 'reference', 'bar', 'stock']
+        fields = ['reference', 'bar', 'stock']
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = ['reference', 'count']
+
 
 class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer()
+
     class Meta:
         model = Order
-        fields = ['id', 'bar']
+        fields = ['id', 'bar', 'items']
+

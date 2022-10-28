@@ -1,37 +1,35 @@
-from django.shortcuts import render
 from beermanagment.models import Reference, Bar, Stock, Order
 from beermanagment.serializers import ReferenceSerializer, BarSerializer, StockSerializer, OrderSerializer
 from rest_framework import generics
 from rest_framework import permissions
+from rest_framework import viewsets
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
 
-
-class ReferenceList(generics.ListCreateAPIView):
+class ReferenceViewSet(viewsets.ModelViewSet):
     queryset = Reference.objects.all()
     serializer_class = ReferenceSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['reference', 'name', 'description']
+    ordering_fields = ['reference', 'name', 'stock']
 
-
-class ReferenceDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Reference.objects.all()
-    serializer_class = ReferenceSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-class BarList(generics.ListCreateAPIView):
+class BarViewSet(viewsets.ModelViewSet):
     queryset = Bar.objects.all()
     serializer_class = BarSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['name']
 
 
-class BarDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Bar.objects.all()
-    serializer_class = BarSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-class StockList(generics.ListCreateAPIView):
+class StockViewSet(viewsets.ModelViewSet):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['reference', 'bar']
 
 
 class OrderList(generics.ListCreateAPIView):
@@ -42,3 +40,18 @@ class OrderList(generics.ListCreateAPIView):
 class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def statistics(request):
+    # service to get list of bars full and non full here
+    return Response({"all_stocks" : {
+        "description": "Liste des comptoirs qui ont toutes les références en stock",
+        "bars": [1]
+    },
+    "miss_at_least_one": {
+        "description": "Liste des comptoirs qui ont au moins une référence épuisée",
+        "bars": [2, 3 , 4]
+    }
+    })
