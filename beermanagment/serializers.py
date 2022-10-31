@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from beermanagment import services
 from beermanagment.models import Reference, Bar, Stock, Order, OrderItem
 from django.contrib.auth.models import User, Group
 
@@ -38,6 +39,7 @@ class OrderSerializer(serializers.ModelSerializer):
         items_data = validated_data.pop('items')
         order = Order.objects.create(**validated_data)
         for i in items_data: OrderItem.objects.create(order=order, **i)
+        services.order_change_stock(order)
         return order
 
     

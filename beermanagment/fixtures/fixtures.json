@@ -114,7 +114,7 @@
         "fields": {
             "reference": 1,
             "bar": 1,
-            "stock": 0
+            "stock": 10
         }
     },
     {
