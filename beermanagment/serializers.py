@@ -2,17 +2,16 @@ from rest_framework import serializers
 from beermanagment.models import Reference, Bar, Stock, Order, OrderItem
 
 
-
-class ReferenceSerializer(serializers.ModelSerializer):
+class ReferenceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Reference
-        fields = ['id', 'reference', 'name', 'description', 'availability']
+        fields = ['id', 'reference', 'name', 'description', 'availability', 'url']
 
 
 class BarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bar
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'url']
 
 
 class StockSerializer(serializers.ModelSerializer):
@@ -28,9 +27,17 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer()
+    items = OrderItemSerializer(many=True)
 
     class Meta:
         model = Order
         fields = ['id', 'bar', 'items']
+
+    def create(self, validated_data):
+        items_data = validated_data.pop('items')
+        order = Order.objects.create(**validated_data)
+        for i in items_data: OrderItem.objects.create(order=order, **i)
+        return order
+
+    
 

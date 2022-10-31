@@ -10,9 +10,6 @@ class Reference(models.Model):
 	def availability(self):
 		return "available" if sum(Stock.objects.filter(reference=self).values_list('stock', flat=True)) else "outofstock"
 
-	class Meta:
-		ordering = ['reference']
-
 
 class Bar(models.Model):
 	name = models.CharField(max_length=30)
@@ -29,6 +26,6 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-	order = models.ForeignKey("Order", on_delete=models.CASCADE)
+	order = models.ForeignKey("Order", related_name='items', on_delete=models.CASCADE)
 	reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
 	count = models.PositiveIntegerField()
