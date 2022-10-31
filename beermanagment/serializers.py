@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from beermanagment.models import Reference, Bar, Stock, Order, OrderItem
+from django.contrib.auth.models import User, Group
 
 
 class ReferenceSerializer(serializers.HyperlinkedModelSerializer):
