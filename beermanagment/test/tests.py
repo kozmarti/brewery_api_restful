@@ -30,6 +30,6 @@ class TestCaseForReference(APITestCase):
 	def test_get_statistics_request_factory(self):
 		request_factory = APIRequestFactory()
 		request = request_factory.get("/api/statistics/")
-		reference_view = statistics
-		response = reference_view(request)
+		statistics_view = statistics
+		response = statistics_view(request)
 		self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

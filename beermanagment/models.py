@@ -2,33 +2,36 @@ from django.db import models
 
 
 class Reference(models.Model):
-	reference = models.CharField(max_length=30)
-	name = models.CharField(max_length=30)
-	description = models.CharField(max_length=200, blank=True)
-	
-	@property
-	def availability(self):
-		return "available" if sum(Stock.objects.filter(reference=self).values_list('stock', flat=True)) else "outofstock"
-	
-	class Meta:
-   		ordering = ['reference']
+    reference = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=200, blank=True)
+
+    @property
+    def availability(self):
+        return "available" if sum(Stock.objects.filter(reference=self).values_list('stock', flat=True)) else "outofstock"
+
+    class Meta:
+        ordering = ['reference']
 
 
 class Bar(models.Model):
-	name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
 
 
 class Stock(models.Model):
-	reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-	bar = models.ForeignKey("Bar", on_delete=models.CASCADE)
-	stock = models.PositiveIntegerField()
+    reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    bar = models.ForeignKey("Bar", on_delete=models.CASCADE)
+    stock = models.PositiveIntegerField()
 
 
 class Order(models.Model):
-	bar = models.ForeignKey("Bar", on_delete=models.CASCADE)
+    bar = models.ForeignKey("Bar", on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-id']
 
 
 class OrderItem(models.Model):
-	order = models.ForeignKey("Order", related_name='items', on_delete=models.CASCADE)
-	reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-	count = models.PositiveIntegerField()
+    order = models.ForeignKey("Order", related_name='items', on_delete=models.CASCADE)
+    reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    count = models.PositiveIntegerField()
