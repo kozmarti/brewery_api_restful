@@ -21,10 +21,12 @@ def get_full_and_non_full_bars(bars: QuerySet[Bar], references: list) -> dict:
 
 def order_change_stock(order: Order) -> str:
     stocks_in_bar = Stock.objects.filter(bar=order.bar)
-    if not stocks_in_bar:
-        return ['There is no beer at all on stock in this empty bar! ']
-    orderitems = order.items.all()
     messages = []
+    if not stocks_in_bar:
+        no_stock_message = 'There is no beer at all on stock in this empty bar! '
+        logger.error(no_stock_message)
+        return no_stock_message
+    orderitems = order.items.all()
     for orderitem in orderitems:
         less_than_2_error_message = f'Stock for beer (id: {orderitem.reference.id}) is less than 2, refill needed! '
         no_beer_on_stock_error_message = f'There is no beer (id: {orderitem.reference.id}) on stock in this bar! '
@@ -37,7 +39,11 @@ def order_change_stock(order: Order) -> str:
                 if stock_for_reference_in_bar.stock < 2:
                     messages.append(less_than_2_error_message)
             elif stock_for_reference_in_bar.stock:
-                messages.append(f'Only {stock_for_reference_in_bar.stock} beer was in stock for beer (id: {orderitem.reference.id}, {orderitem.count - stock_for_reference_in_bar.stock} could not be sold to customer! ')
+                messages.append(f'Only {stock_for_reference_in_bar.stock} beer'
+                                f' was in stock for beer (id: '
+                                f'{orderitem.reference.id}), '
+                                f'{orderitem.count - stock_for_reference_in_bar.stock}'
+                                f' could not be sold to customer! ')
                 stock_for_reference_in_bar.stock = 0
                 stock_for_reference_in_bar.save()
                 messages.append(less_than_2_error_message)
@@ -45,4 +51,5 @@ def order_change_stock(order: Order) -> str:
                 messages.append(no_beer_on_stock_error_message)
         except ObjectDoesNotExist:
             messages.append(no_beer_on_stock_error_message)
+    logger.error(messages)
     return messages

@@ -1,6 +1,6 @@
 from django.test import TestCase
 from beermanagment import services
-from beermanagment.models import Bar, Order, OrderItem, Reference
+from beermanagment.models import Bar, Order, OrderItem, Reference, Stock
 
 
 class TestServiceMethods(TestCase):
@@ -13,17 +13,36 @@ class TestServiceMethods(TestCase):
 
     def test_order_change_stock(self):
         order = Order.objects.create(bar=Bar.objects.get(pk=1))
-        OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=1), count=30)
-        OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=2), count=30)
-        message = ['Only 10 beer was in stock for beer (id: 1, 20 could not be sold to customer! ',
-                   'Stock for beer (id: 1) is less than 2, refill needed! ',
-                   'Only 8 beer was in stock for beer (id: 2, 22 could not be sold to customer! ',
-                   'Stock for beer (id: 2) is less than 2, refill needed! ']
+        OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=1), count=1)
+        OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=2), count=1)
+        message = ['Order (beer id: 1) OK ', 'Order (beer id: 2) OK ']
         self.assertEqual(services.order_change_stock(order), message)
-        message = ['There is no beer (id: 1) on stock in this bar! ',
-                   'There is no beer (id: 2) on stock in this bar! ']
+        self.assertEqual(Stock.objects.get(bar=Bar.objects.get(pk=1), reference=Reference.objects.get(pk=1)).stock, 9)
+        self.assertEqual(Stock.objects.get(bar=Bar.objects.get(pk=1), reference=Reference.objects.get(pk=2)).stock, 7)
+
         order = Order.objects.create(bar=Bar.objects.get(pk=1))
         OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=1), count=30)
         OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=2), count=30)
+        message = ['Only 9 beer was in stock for beer (id: 1), 21 could not be sold to customer! ',
+                   'Stock for beer (id: 1) is less than 2, refill needed! ',
+                   'Only 7 beer was in stock for beer (id: 2), 23 could not be sold to customer! ',
+                   'Stock for beer (id: 2) is less than 2, refill needed! ']
+        self.assertEqual(services.order_change_stock(order), message)
+        self.assertEqual(Stock.objects.get(bar=Bar.objects.get(pk=1), reference=Reference.objects.get(pk=1)).stock, 0)
+        self.assertEqual(Stock.objects.get(bar=Bar.objects.get(pk=1), reference=Reference.objects.get(pk=2)).stock, 0)
+
+        order = Order.objects.create(bar=Bar.objects.get(pk=1))
+        OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=1), count=30)
+        OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=2), count=30)
+        message = ['There is no beer (id: 1) on stock in this bar! ',
+                   'There is no beer (id: 2) on stock in this bar! ']
+        self.assertEqual(services.order_change_stock(order), message)
+        self.assertEqual(Stock.objects.get(bar=Bar.objects.get(pk=1), reference=Reference.objects.get(pk=1)).stock, 0)
+        self.assertEqual(Stock.objects.get(bar=Bar.objects.get(pk=1), reference=Reference.objects.get(pk=2)).stock, 0)
+
+        order = Order.objects.create(bar=Bar.objects.get(pk=4))
+        OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=1), count=30)
+        OrderItem.objects.create(order=order, reference=Reference.objects.get(pk=2), count=30)
+        message = 'There is no beer at all on stock in this empty bar! '
         self.assertEqual(services.order_change_stock(order), message)
 
