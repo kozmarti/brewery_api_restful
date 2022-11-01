@@ -12,13 +12,13 @@ from beermanagment.serializers import ReferenceSerializer, BarSerializer, StockS
 
 
 @api_view(['GET'])
-def api_root(request, format=None):
+def api_root(request):
     return Response({
-        'beers': reverse('reference-list', request=request, format=format),
-        'bars': reverse('bar-list', request=request, format=format),
-        'stocks': reverse('stock-list', request=request, format=format),
-        'statistics': reverse('statistics', request=request, format=format),
-        'orders': reverse('order-list', request=request, format=format)
+        'beers': reverse('reference-list', request=request),
+        'bars': reverse('bar-list', request=request),
+        'stocks': reverse('stock-list', request=request),
+        'statistics': reverse('statistics', request=request),
+        'orders': reverse('order-list', request=request)
     })
 
 
@@ -61,7 +61,7 @@ class OrderList(generics.ListCreateAPIView):
 @api_view(['GET'])
 @permission_classes([custom_permissions.IsStaffAndReadOnly])
 def statistics(request):
-    bars = services.get_full_and_non_full_bars()
+    bars = services.get_full_and_non_full_bars(Bar.objects.all(), Reference.objects.all().values_list('id', flat=True))
     return Response({"all_stocks": {
         "description": "Liste des comptoirs qui ont toutes les références en stock",
         "bars": bars['all_stocks']
