@@ -17,11 +17,17 @@ class Reference(models.Model):
 class Bar(models.Model):
     name = models.CharField(max_length=30)
 
+    class Meta:
+        ordering = ['id']
+
 
 class Stock(models.Model):
     reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
     bar = models.ForeignKey("Bar", on_delete=models.CASCADE)
     stock = models.PositiveIntegerField()
+
+    class Meta:
+        ordering = ['id']
 
 
 class Order(models.Model):
