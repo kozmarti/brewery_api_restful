@@ -7,15 +7,9 @@ logger = logging.getLogger(__name__)
 
 
 def get_full_and_non_full_bars(bars: QuerySet[Bar], references: list) -> dict:
-    bars_full_non_full = {
-        'all_stocks': [],
-        'miss_at_least_one': []
-    }
-    for bar in bars:
-        if references == Stock.objects.filter(bar=bar).values_list('reference', flat=True):
-            bars_full_non_full['all_stocks'].append(bar.id)
-        else:
-            bars_full_non_full['miss_at_least_one'].append(bar.id)
+    bars_full_non_full = {}
+    bars_full_non_full['miss_at_least_one'] = list(set(Stock.objects.filter(stock=0).values_list('bar', flat=True)))
+    bars_full_non_full['all_stocks'] = list(Bar.objects.all().exclude(id__in=bars_full_non_full['miss_at_least_one']).values_list('id', flat=True))
     return bars_full_non_full
 
 

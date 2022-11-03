@@ -139,41 +139,95 @@
         "model": "beermanagment.stock",
         "pk": 4,
         "fields": {
-            "reference": 1,
-            "bar": 2,
-            "stock": 0
+            "reference": 4,
+            "bar": 1,
+            "stock": 5
         }
     },
     {
         "model": "beermanagment.stock",
         "pk": 5,
         "fields": {
-            "reference": 2,
-            "bar": 2,
-            "stock": 31
+            "reference": 5,
+            "bar": 1,
+            "stock": 5
         }
     },
     {
         "model": "beermanagment.stock",
         "pk": 6,
         "fields": {
-            "reference": 3,
-            "bar": 2,
-            "stock": 20
+            "reference": 6,
+            "bar": 1,
+            "stock": 5
         }
     },
     {
         "model": "beermanagment.stock",
         "pk": 7,
         "fields": {
-            "reference": 4,
-            "bar": 2,
-            "stock": 10
+            "reference": 7,
+            "bar": 1,
+            "stock": 5
         }
     },
     {
         "model": "beermanagment.stock",
         "pk": 8,
+        "fields": {
+            "reference": 8,
+            "bar": 1,
+            "stock": 5
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 9,
+        "fields": {
+            "reference": 9,
+            "bar": 1,
+            "stock": 5
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 10,
+        "fields": {
+            "reference": 1,
+            "bar": 2,
+            "stock": 5
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 11,
+        "fields": {
+            "reference": 2,
+            "bar": 2,
+            "stock": 0
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 12,
+        "fields": {
+            "reference": 3,
+            "bar": 2,
+            "stock": 31
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 13,
+        "fields": {
+            "reference": 4,
+            "bar": 2,
+            "stock": 20
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 14,
         "fields": {
             "reference": 5,
             "bar": 2,
@@ -182,64 +236,10 @@
     },
     {
         "model": "beermanagment.stock",
-        "pk": 9,
-        "fields": {
-            "reference": 6,
-            "bar": 2,
-            "stock": 10
-        }
-    },
-    {
-        "model": "beermanagment.stock",
-        "pk": 10,
-        "fields": {
-            "reference": 7,
-            "bar": 2,
-            "stock": 10
-        }
-    },
-    {
-        "model": "beermanagment.stock",
-        "pk": 11,
-        "fields": {
-            "reference": 8,
-            "bar": 2,
-            "stock": 10
-        }
-    },
-    {
-        "model": "beermanagment.stock",
-        "pk": 12,
-        "fields": {
-            "reference": 9,
-            "bar": 2,
-            "stock": 10
-        }
-    },
-    {
-        "model": "beermanagment.stock",
-        "pk": 13,
-        "fields": {
-            "reference": 6,
-            "bar": 1,
-            "stock": 10
-        }
-    },
-    {
-        "model": "beermanagment.stock",
-        "pk": 14,
-        "fields": {
-            "reference": 7,
-            "bar": 1,
-            "stock": 10
-        }
-    },
-    {
-        "model": "beermanagment.stock",
         "pk": 15,
         "fields": {
-            "reference": 8,
-            "bar": 1,
+            "reference": 6,
+            "bar": 2,
             "stock": 10
         }
     },
@@ -247,8 +247,188 @@
         "model": "beermanagment.stock",
         "pk": 16,
         "fields": {
+            "reference": 7,
+            "bar": 2,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 17,
+        "fields": {
+            "reference": 8,
+            "bar": 2,
+            "stock": 0
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 18,
+        "fields": {
             "reference": 9,
-            "bar": 1,
+            "bar": 2,
+            "stock": 0
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 19,
+        "fields": {
+            "reference": 1,
+            "bar": 3,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 20,
+        "fields": {
+            "reference": 2,
+            "bar": 3,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 21,
+        "fields": {
+            "reference": 3,
+            "bar": 3,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 22,
+        "fields": {
+            "reference": 4,
+            "bar": 3,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 23,
+        "fields": {
+            "reference": 5,
+            "bar": 3,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 24,
+        "fields": {
+            "reference": 6,
+            "bar": 3,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 25,
+        "fields": {
+            "reference": 7,
+            "bar": 3,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 26,
+        "fields": {
+            "reference": 8,
+            "bar": 3,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 27,
+        "fields": {
+            "reference": 9,
+            "bar": 3,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 28,
+        "fields": {
+            "reference": 1,
+            "bar": 4,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 29,
+        "fields": {
+            "reference": 2,
+            "bar": 4,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 30,
+        "fields": {
+            "reference": 3,
+            "bar": 4,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 31,
+        "fields": {
+            "reference": 4,
+            "bar": 4,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 32,
+        "fields": {
+            "reference": 5,
+            "bar": 4,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 33,
+        "fields": {
+            "reference": 6,
+            "bar": 4,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 34,
+        "fields": {
+            "reference": 7,
+            "bar": 4,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 35,
+        "fields": {
+            "reference": 8,
+            "bar": 4,
+            "stock": 10
+        }
+    },
+    {
+        "model": "beermanagment.stock",
+        "pk": 36,
+        "fields": {
+            "reference": 9,
+            "bar": 4,
             "stock": 10
         }
     },
