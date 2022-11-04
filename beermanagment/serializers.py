@@ -3,7 +3,10 @@ from beermanagment import services
 from beermanagment.models import Reference, Bar, Stock, Order, OrderItem
 
 
-class ReferenceSerializer(serializers.HyperlinkedModelSerializer):
+class ReferenceSerializer(serializers.ModelSerializer):
+
+    availability = serializers.BooleanField(source='is_on_stock')
+
     class Meta:
         model = Reference
         fields = ['id', 'reference', 'name', 'description', 'availability', 'url']

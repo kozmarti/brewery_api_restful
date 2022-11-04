@@ -9,7 +9,8 @@ from . import permissions as custom_permissions
 from beermanagment import services
 from beermanagment.models import Reference, Bar, Stock, Order
 from beermanagment.serializers import ReferenceSerializer, BarSerializer, StockSerializer, OrderSerializer
-
+from django.db.models import Count
+from django.db.models import Q
 
 @api_view(['GET'])
 def api_root(request):
@@ -23,7 +24,7 @@ def api_root(request):
 
 
 class ReferenceViewSet(viewsets.ModelViewSet):
-    queryset = Reference.objects.all()
+    queryset = Reference.objects.all().annotate(is_on_stock=Count('stock', filter=Q(stock__stock__gt=0)))
     serializer_class = ReferenceSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     permission_classes = [custom_permissions.IsStaffOrReadOnly]
