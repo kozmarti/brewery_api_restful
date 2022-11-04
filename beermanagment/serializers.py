@@ -35,12 +35,10 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = ['id', 'bar', 'items']
 
     def create(self, validated_data):
+        services.is_reference_on_stock(validated_data)
         items_data = validated_data.pop('items')
         order = Order.objects.create(**validated_data)
         for i in items_data:
             OrderItem.objects.create(order=order, **i)
-        services.order_change_stock(order)
+        services.decrease_stock(self.data)
         return order
-
-    
-
