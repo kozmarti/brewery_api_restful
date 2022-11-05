@@ -2,6 +2,11 @@
 docker build -t brewery .
 docker run -it --rm -p 8000:8000 brewery
 ```
+Accounts to test the app:   
+- username: marta_staff, pw: test   
+- username: marta_customer, pw: test   
+- username: marta_superuser, pw: test   
+
 
 # brewery_api_restful
 
