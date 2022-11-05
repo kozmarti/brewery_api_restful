@@ -4,8 +4,7 @@ from beermanagment.models import Reference, Bar, Stock, Order, OrderItem
 
 
 class ReferenceSerializer(serializers.ModelSerializer):
-
-    availability = serializers.BooleanField(source='is_on_stock')
+    availability = serializers.BooleanField(source='is_on_stock', read_only=True)
 
     class Meta:
         model = Reference
