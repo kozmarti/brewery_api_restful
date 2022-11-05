@@ -48,7 +48,7 @@ class StockViewSet(viewsets.ModelViewSet):
     filterset_fields = ['reference', 'bar']
 
 
-class OrderList(generics.ListCreateAPIView):
+class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = [custom_permissions.IsStaffAndReadOnly | custom_permissions.IsNotStaffWriteOnly ]
 

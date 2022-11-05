@@ -12,6 +12,6 @@ urlpatterns = [
     path('', views.api_root),
     path('', include(router.urls)),
     path('stocks/', views.StockViewSet.as_view({'get': 'list'}), name='stock-list'),
-    path('orders/', views.OrderList.as_view(), name='order-list'),
+    path('orders/', views.OrderViewSet.as_view({'get': 'list', 'post': 'create'}), name='order-list'),
     path('statistics/', views.statistics, name='statistics'),
 ]
