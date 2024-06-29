@@ -1,7 +1,7 @@
 # Description 
 
 Beer stock  managment used by a bar.  
-This bar has several type of beers and it has more beer counter, each one has their own stock.  
+This bar has several type of beers and beer counters, each one has its own stock.  
 The clients (anonym users) can order and the staff (authenticated users) can manage their stock.  
 
 # Tools
