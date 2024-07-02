@@ -6,7 +6,7 @@ The clients (anonym users) can order and the staff (authenticated users) can man
 
 # Tools
 
-- Django Resftul Framework API
+- Django Restful Framework API
 - docker
 
 # Installation
