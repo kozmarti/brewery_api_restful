@@ -30,7 +30,7 @@ The following users are already created in the Docker container using fixtures:
 
 ## 1️⃣ Generate Tokens
 
-1. Open a shell in the Docker container:
+Open a shell in the Docker container:
 
 ```bash
 docker exec -it <container_name_or_id> python manage.py shell
@@ -58,7 +58,9 @@ print("Superuser token:", superuser_token.key)
 ```
 Copy the printed tokens for use in API requests.
 
-2. Customer Permissions
+## 2️⃣ Call API
+
+## Customer Permissions
 
 The customer user can access the following endpoints:
 
@@ -68,7 +70,7 @@ The customer user can access the following endpoints:
 | Bars       | `/api/bars/`         | Read-only  |
 | Orders     | `/api/orders/`       | Write allowed |
 
-**Example `curl` calls for customer:**
+### Example `curl` calls for customer:
 
 ```bash
 # List references
@@ -84,7 +86,7 @@ Staff-only endpoints return 404 for customer users.
 Staff-only endpoints return 404 for customer users.
 
 
-3. Staff & Superuser Permissions
+## Staff & Superuser Permissions
 
 Staff and superuser users can access everything above, **plus**:
 
@@ -93,7 +95,7 @@ Staff and superuser users can access everything above, **plus**:
 | Stocks      | `/api/stocks/`        | Staff only |
 | Statistics  | `/api/statistics/`    | Staff only |
 
-**Example `curl` calls for staff:**
+### Example `curl` calls for staff:
 
 ```bash
 # List stocks
@@ -103,7 +105,7 @@ curl -s -H "Authorization: Token <staff_token>" http://localhost:8000/api/stocks
 curl -s -H "Authorization: Token <staff_token>" http://localhost:8000/api/statistics/ | jq
 ```
 
-**Example `curl` calls for superuser:**
+### Example `curl` calls for superuser:
 
 ```bash
 # List stocks
@@ -113,7 +115,7 @@ curl -s -H "Authorization: Token <superuser_token>" http://localhost:8000/api/st
 curl -s -H "Authorization: Token <superuser_token>" http://localhost:8000/api/statistics/ | jq
 ```
 
-4. Notes
+## 3️⃣ Notes
 
 - All requests must include the header:
 ```http
