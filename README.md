@@ -81,7 +81,6 @@ curl -s -H "Authorization: Token <customer_token>" http://localhost:8000/api/bar
 
 # List orders
 curl -s -H "Authorization: Token <customer_token>" http://localhost:8000/api/orders/ | jq
-Staff-only endpoints return 404 for customer users.
 ```
 Staff-only endpoints return 404 for customer users.
 
